@@ -13,7 +13,9 @@ app.get("/hours", (req, res) => {
 });
 
 app.get("/contact", (req, res) => {
-  res.send("📞 Contact us at 555-FOOD or hello@foodtruck.com ");
+  res.send(
+    "<p style='background-color: orange;'>📞 Contact us at 555-FOOD or hello@foodtruck.com</p>"
+  );
 });
 
 app.get("/menu", (req, res) => {
@@ -25,6 +27,10 @@ app.get("/menu", (req, res) => {
               <li>Smoothies</li>
             </ul>
           </body></html>`);
+});
+
+app.use((req, res) => {
+  res.status(404).send("404 Not Found");
 });
 
 app.listen(PORT, () => {
