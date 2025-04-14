@@ -8,6 +8,25 @@ app.get("/", (req, res) => {
   res.send("🚚 Welcome to the Food Truck!");
 });
 
+app.get("/hours", (req, res) => {
+  res.send("🕒 We are open from 11am to 7pm!");
+});
+
+app.get("/contact", (req, res) => {
+  res.send("📞 Contact us at 555-FOOD or hello@foodtruck.com ");
+});
+
+app.get("/menu", (req, res) => {
+  res.send(`<html><head><title>Menu</title></head><body>
+            <h1>🥙 Our Menu</h1>
+            <ul>
+              <li>Tacos</li>
+              <li>Quesadillas</li>
+              <li>Smoothies</li>
+            </ul>
+          </body></html>`);
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
