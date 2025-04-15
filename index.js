@@ -1,6 +1,6 @@
 const express = require("express");
 require("dotenv").config();
-
+const axios = require("axios");
 const app = express();
 const PORT = process.env.PORT;
 
@@ -27,6 +27,24 @@ app.get("/menu", (req, res) => {
               <li>Smoothies</li>
             </ul>
           </body></html>`);
+});
+
+app.get("/api/user", async (req, res) => {
+  try {
+    const response = await axios.get("https://randomuser.me/api/?results=1");
+    const user = response.data.results[0];
+
+    const data = {
+      name: `${user.name.first} ${user.name.last}`,
+      email: user.email,
+      location: `${user.location.city}, ${user.location.country}`,
+      picture: user.picture.medium,
+    };
+
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch user" });
+  }
 });
 
 app.use((req, res) => {
